@@ -50,6 +50,18 @@
         </div>
     </div>
 
+    <!-- multi checkbox -->
+    <div>
+        <div>등록 지역</div>
+        <!-- html에서 id는 겹치면 안되므로, 타임리프에서는 each로 반복해서 만들 때 임의로 id값 뒤에 1,2,3..을 붙여줌-->
+        <div th:each="region : ${regions}" class="form-check form-check-inline">
+            <input type="checkbox" th:field="${item.regions}" th:value="${region.key}" class="form-check-input" disabled >
+            <!-- each문으로 자동생성된 id값을 가져올 수 있는 기능 #ids.prev()-->
+            <label th:for="${#ids.prev('regions')}"
+                   th:text="${region.value}" class="form-check-label"></label>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"
